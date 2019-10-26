@@ -1,28 +1,34 @@
 /*
-Given a valid (IPv4) IP address, return a defanged version of that IP address.
+ Given an array A of non-negative integers, return an array consisting of all the even elements of A, followed by all the odd elements of A.
 
-A defanged IP address replaces every period "." with "[.]".
+ You may return any answer array that satisfies this condition.
 
- 
+  
 
-Example 1:
+ Example 1:
 
-Input: address = "1.1.1.1"
-Output: "1[.]1[.]1[.]1"
-Example 2:
+ Input: [3,1,2,4]
+ Output: [2,4,3,1]
+ The outputs [4,2,3,1], [2,4,1,3], and [4,2,1,3] would also be accepted.
+  
 
-Input: address = "255.100.50.0"
-Output: "255[.]100[.]50[.]0"
+ Note:
+
+ 1 <= A.length <= 5000
+ 0 <= A[i] <= 5000
 */ 
 
-var defangIpAddress = function(s) {
-  var result = ""
-  for (var i = 0; i < s.length ; i++){
-     s[i] == "." ? result += "[.]" : result += s[i]
+var sortArrayByParity = function(A) {
+      var evenArray = []
+  var oddArray = []
+
+  for (var i = 0; i < A.length; i++) {
+    if (A[i]%2 == 0)
+      evenArray = evenArray.concat(A[i])
+    else 
+      oddArray = oddArray.concat(A[i])
   }
-  return result
+
+  return evenArray.concat(oddArray)
 }
 
-s = "1.1.1.1"
-var result = defangIpAddress(s)
-console.log(result)
