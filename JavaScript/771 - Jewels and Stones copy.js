@@ -1,50 +1,25 @@
+
 /*
-You're given strings J representing the types of stones that are jewels, and S representing the stones you have.  Each character in S is a type of stone you have.  You want to know how many of the stones you have are also jewels.
+ Coding Challenge: Return the first index of every time a pattern is matched in a String. I.E. string: "This is a TEST flow TEST" pattern: "TEST" -> [10, 17]
+ */
 
-The letters in J are guaranteed distinct, and all characters in J and S are letters. Letters are case sensitive, so "a" is considered a different type of stone from "A".
 
-Example 1:
+var matchingString = function(str, pattern) {
+  var arrOfString = str.split(" ")
+  var result = []
+  var count = 0
 
-Input: J = "aA", S = "aAAbbbb"
-Output: 3
-Example 2:
-
-Input: J = "z", S = "ZZ"
-Output: 0
-Note:
-
-S and J will consist of letters and have length at most 50.
-The characters in J are distinct.
-*/ 
-
-// Solution 1: Do the for loop for each character in S, if J contains this character -> increase num by 1
-var numJewelsInStones = function(J, S) {
-    var num = 0
-    for (let i = 0; i< s.length; i++){
-    	if (J.indexOf(s[0]) != -1) {
-    		num ++
-    	}
+  for (var i = 0; i < arrOfString.length; i++){
+    if (arrOfString[i].includes(pattern)){
+      result.push(count)
     }
-    return num
-};
+    count += arrOfString[i].length + 1
+  }
 
-// Solution 2: Create an object with key and value for Stone. Do the loop in Jewel
-var numJewelsInStones2 = function(J,S) {
-	var dictOfS = {}
-	for (let i = 0; i < S.length; i++){
-		if (dictOfS[S[i]] == null) {
-			dictOfS[S[i]] = 1
-		} else {
-			dictOfS[S[i]]++
-		}
-	}
-
-	var result = 0
-	for (let i = 0; i < J.length; j++){
-		if (dictOfS[J[i]] != null) {
-			result += dictOfS[J[i]]
-		}
-	}
-
-	return result
+  return result
 }
+
+var str = "This is a TEST flow TEST"
+var result = matchingString(str, "TEST")
+
+console.log(result)
